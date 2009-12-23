@@ -74,6 +74,8 @@
     NSRange searchRange = NSMakeRange(index, string.length - index);
     NSRange startRange = [string rangeOfString:@"http://" options:NSCaseInsensitiveSearch
                                  range:searchRange];
+    if(startRange.location==NSNotFound)
+      startRange=[string rangeOfString:@"https://" options:NSCaseInsensitiveSearch range:searchRange];
     if (startRange.location == NSNotFound) {
       NSString* text = [string substringWithRange:searchRange];
       TTStyledTextNode* node = [[[TTStyledTextNode alloc] initWithText:text] autorelease];
